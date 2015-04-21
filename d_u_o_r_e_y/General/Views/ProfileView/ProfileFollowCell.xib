@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="51" id="KGk-i7-Jjw" customClass="ProfileFollowCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwt-aT-e67" userLabel="FollowView">
+                        <rect key="frame" x="0.0" y="3" width="160" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3236" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vnh-93-OMg">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fe-Nk-TkM">
+                                <rect key="frame" x="0.0" y="22" width="160" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Vnh-93-OMg" firstAttribute="height" secondItem="1Fe-Nk-TkM" secondAttribute="height" constant="1" id="GcI-HI-b0s"/>
+                            <constraint firstItem="1Fe-Nk-TkM" firstAttribute="leading" secondItem="Gwt-aT-e67" secondAttribute="leading" id="TnB-z6-EDi"/>
+                            <constraint firstAttribute="bottom" secondItem="1Fe-Nk-TkM" secondAttribute="bottom" constant="1" id="W30-H5-v5E"/>
+                            <constraint firstItem="Vnh-93-OMg" firstAttribute="top" secondItem="Gwt-aT-e67" secondAttribute="top" id="ZHZ-Lm-nl9"/>
+                            <constraint firstItem="Vnh-93-OMg" firstAttribute="leading" secondItem="Gwt-aT-e67" secondAttribute="leading" id="aMB-Qk-hsz"/>
+                            <constraint firstItem="1Fe-Nk-TkM" firstAttribute="top" secondItem="Vnh-93-OMg" secondAttribute="bottom" id="h2g-Zk-bBX"/>
+                            <constraint firstAttribute="trailing" secondItem="Vnh-93-OMg" secondAttribute="trailing" id="mLB-0C-Czn"/>
+                            <constraint firstAttribute="trailing" secondItem="1Fe-Nk-TkM" secondAttribute="trailing" id="wB4-WF-puv"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYL-gx-BN3" userLabel="FollowedView">
+                        <rect key="frame" x="160" y="3" width="160" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOWED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7H-7Z-qeh">
+                                <rect key="frame" x="0.0" y="22" width="160" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3236" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0x3-Qa-eIM">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="c7H-7Z-qeh" firstAttribute="height" secondItem="0x3-Qa-eIM" secondAttribute="height" constant="-1" id="6KT-N9-sWw"/>
+                            <constraint firstAttribute="bottom" secondItem="c7H-7Z-qeh" secondAttribute="bottom" constant="1" id="7VW-8q-0JK"/>
+                            <constraint firstItem="0x3-Qa-eIM" firstAttribute="leading" secondItem="lYL-gx-BN3" secondAttribute="leading" id="9Q0-sx-0aU"/>
+                            <constraint firstItem="c7H-7Z-qeh" firstAttribute="top" secondItem="0x3-Qa-eIM" secondAttribute="bottom" id="EWr-gG-Fcf"/>
+                            <constraint firstAttribute="trailing" secondItem="c7H-7Z-qeh" secondAttribute="trailing" id="h1t-iI-dSk"/>
+                            <constraint firstItem="c7H-7Z-qeh" firstAttribute="leading" secondItem="lYL-gx-BN3" secondAttribute="leading" id="i0F-cX-Az9"/>
+                            <constraint firstItem="0x3-Qa-eIM" firstAttribute="top" secondItem="lYL-gx-BN3" secondAttribute="top" id="pfW-ud-jeW"/>
+                            <constraint firstAttribute="trailing" secondItem="0x3-Qa-eIM" secondAttribute="trailing" id="xaw-qd-EfQ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="lYL-gx-BN3" firstAttribute="leading" secondItem="Gwt-aT-e67" secondAttribute="trailing" id="DFz-WE-KHT"/>
+                    <constraint firstAttribute="trailing" secondItem="lYL-gx-BN3" secondAttribute="trailing" id="dnf-Ro-lFB"/>
+                    <constraint firstItem="Gwt-aT-e67" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="edm-1H-imj"/>
+                    <constraint firstAttribute="trailing" secondItem="Gwt-aT-e67" secondAttribute="trailing" constant="160" id="gip-wU-oWW"/>
+                    <constraint firstItem="Gwt-aT-e67" firstAttribute="bottom" secondItem="lYL-gx-BN3" secondAttribute="bottom" id="gtM-zC-Tbg"/>
+                    <constraint firstItem="Gwt-aT-e67" firstAttribute="top" secondItem="lYL-gx-BN3" secondAttribute="top" id="pr5-8k-az6"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Gwt-aT-e67" secondAttribute="bottom" constant="-6" id="uDC-4C-oCl"/>
+                    <constraint firstItem="Gwt-aT-e67" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-5" id="xkb-GY-dUS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <gestureRecognizers/>
+            <connections>
+                <outlet property="followCountLabel" destination="Vnh-93-OMg" id="tgs-AC-FF6"/>
+                <outlet property="followTitleLabel" destination="1Fe-Nk-TkM" id="UVA-rj-w5L"/>
+                <outlet property="followView" destination="Gwt-aT-e67" id="r4D-7E-5Na"/>
+                <outlet property="followedCountLabel" destination="0x3-Qa-eIM" id="Jnm-yJ-xPa"/>
+                <outlet property="followedTitleLabel" destination="c7H-7Z-qeh" id="rwe-GJ-fNg"/>
+                <outlet property="followedView" destination="lYL-gx-BN3" id="fos-RT-XuP"/>
+            </connections>
+            <point key="canvasLocation" x="361" y="339"/>
+        </tableViewCell>
+    </objects>
+</document>

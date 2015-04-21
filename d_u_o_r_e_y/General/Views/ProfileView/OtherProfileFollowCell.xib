@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="KGk-i7-Jjw" customClass="OtherProfileFollowCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGG-tU-Sdp" userLabel="FollowView">
+                        <rect key="frame" x="0.0" y="3" width="100" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3236" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWH-Vi-xmA">
+                                <rect key="frame" x="0.0" y="1" width="100" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3p-4a-1DN">
+                                <rect key="frame" x="0.0" y="22" width="100" height="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OWH-Vi-xmA" firstAttribute="top" secondItem="jGG-tU-Sdp" secondAttribute="top" constant="1" id="4K9-Oo-Ylm"/>
+                            <constraint firstAttribute="trailing" secondItem="S3p-4a-1DN" secondAttribute="trailing" id="9Ix-PU-vRk"/>
+                            <constraint firstItem="S3p-4a-1DN" firstAttribute="leading" secondItem="OWH-Vi-xmA" secondAttribute="leading" id="Pd3-oJ-ZZ2"/>
+                            <constraint firstAttribute="width" constant="100" id="YXZ-eW-Fpe"/>
+                            <constraint firstAttribute="bottom" secondItem="S3p-4a-1DN" secondAttribute="bottom" id="Yno-Wk-EQr"/>
+                            <constraint firstItem="OWH-Vi-xmA" firstAttribute="trailing" secondItem="S3p-4a-1DN" secondAttribute="trailing" id="aZD-x0-txq"/>
+                            <constraint firstItem="S3p-4a-1DN" firstAttribute="leading" secondItem="jGG-tU-Sdp" secondAttribute="leading" id="pYw-MB-GWX"/>
+                            <constraint firstItem="OWH-Vi-xmA" firstAttribute="height" secondItem="S3p-4a-1DN" secondAttribute="height" constant="-1" id="pmZ-5G-uQl"/>
+                            <constraint firstItem="S3p-4a-1DN" firstAttribute="top" secondItem="OWH-Vi-xmA" secondAttribute="bottom" id="rYr-hS-PDp"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thJ-eM-7PB" userLabel="FollowedView">
+                        <rect key="frame" x="100" y="3" width="100" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOWED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZQ-Nh-G1h">
+                                <rect key="frame" x="0.0" y="22" width="100" height="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3236" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv6-Lm-ogv">
+                                <rect key="frame" x="0.0" y="1" width="100" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dv6-Lm-ogv" firstAttribute="trailing" secondItem="nZQ-Nh-G1h" secondAttribute="trailing" id="0cj-rD-gvr"/>
+                            <constraint firstItem="nZQ-Nh-G1h" firstAttribute="leading" secondItem="thJ-eM-7PB" secondAttribute="leading" id="DgY-u9-Pkb"/>
+                            <constraint firstItem="dv6-Lm-ogv" firstAttribute="top" secondItem="thJ-eM-7PB" secondAttribute="top" constant="1" id="Hqa-n8-eXs"/>
+                            <constraint firstAttribute="bottom" secondItem="nZQ-Nh-G1h" secondAttribute="bottom" id="HyK-rI-uBr"/>
+                            <constraint firstItem="dv6-Lm-ogv" firstAttribute="leading" secondItem="nZQ-Nh-G1h" secondAttribute="leading" id="M9J-JK-03n"/>
+                            <constraint firstAttribute="trailing" secondItem="nZQ-Nh-G1h" secondAttribute="trailing" id="N3J-UN-oHK"/>
+                            <constraint firstItem="nZQ-Nh-G1h" firstAttribute="top" secondItem="dv6-Lm-ogv" secondAttribute="bottom" id="ahV-wl-fc8"/>
+                            <constraint firstItem="dv6-Lm-ogv" firstAttribute="height" secondItem="nZQ-Nh-G1h" secondAttribute="height" constant="-1" id="sRe-Ea-AJH"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3At-jq-8X2" userLabel="ButtonView">
+                        <rect key="frame" x="200" y="3" width="120" height="44"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CC5-XV-Vzt" userLabel="addFollowButton">
+                                <rect key="frame" x="80" y="6" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="iGO-bz-CDo"/>
+                                    <constraint firstAttribute="width" constant="32" id="rum-8t-r9b"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="cellFollow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addFollowButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7Yb-lH-8fq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-IW-Bd7" userLabel="unFollowButton">
+                                <rect key="frame" x="80" y="6" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="jXS-N9-zqk"/>
+                                    <constraint firstAttribute="height" constant="32" id="xw7-Dv-bK1"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="cellFollowed">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unFollowButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HH8-58-VIC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CC5-XV-Vzt" firstAttribute="top" secondItem="gOx-IW-Bd7" secondAttribute="top" id="8iw-Sz-6Ek"/>
+                            <constraint firstAttribute="trailing" secondItem="gOx-IW-Bd7" secondAttribute="trailing" constant="8" id="d9w-8T-xj0"/>
+                            <constraint firstItem="CC5-XV-Vzt" firstAttribute="centerY" secondItem="3At-jq-8X2" secondAttribute="centerY" id="jXH-GP-KkM"/>
+                            <constraint firstItem="gOx-IW-Bd7" firstAttribute="leading" secondItem="CC5-XV-Vzt" secondAttribute="trailing" constant="-32" id="p9Q-KX-JmP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jGG-tU-Sdp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="01K-ul-bQx"/>
+                    <constraint firstAttribute="bottom" secondItem="3At-jq-8X2" secondAttribute="bottom" constant="2" id="0SK-ai-ILy"/>
+                    <constraint firstAttribute="trailing" secondItem="3At-jq-8X2" secondAttribute="trailing" id="Fql-Bs-nKS"/>
+                    <constraint firstItem="3At-jq-8X2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="Lau-b7-Q52"/>
+                    <constraint firstItem="jGG-tU-Sdp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="PAg-Jd-OvW"/>
+                    <constraint firstItem="jGG-tU-Sdp" firstAttribute="bottom" secondItem="thJ-eM-7PB" secondAttribute="bottom" id="QSn-e6-am8"/>
+                    <constraint firstItem="thJ-eM-7PB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="100" id="SaD-jY-yJm"/>
+                    <constraint firstItem="thJ-eM-7PB" firstAttribute="leading" secondItem="jGG-tU-Sdp" secondAttribute="trailing" id="ccf-JB-BMe"/>
+                    <constraint firstItem="3At-jq-8X2" firstAttribute="leading" secondItem="thJ-eM-7PB" secondAttribute="trailing" id="mTk-En-Rg3"/>
+                    <constraint firstItem="jGG-tU-Sdp" firstAttribute="top" secondItem="thJ-eM-7PB" secondAttribute="top" id="oYo-7f-z2I"/>
+                    <constraint firstAttribute="bottom" secondItem="jGG-tU-Sdp" secondAttribute="bottom" constant="2" id="pTX-IU-J57"/>
+                    <constraint firstItem="thJ-eM-7PB" firstAttribute="width" secondItem="jGG-tU-Sdp" secondAttribute="width" id="paS-RK-DYV"/>
+                    <constraint firstAttribute="trailing" secondItem="3At-jq-8X2" secondAttribute="trailing" id="tCe-ZQ-9DX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addFollowButton" destination="CC5-XV-Vzt" id="pqW-z5-DIb"/>
+                <outlet property="followCountLabel" destination="OWH-Vi-xmA" id="1Xv-b4-Kzo"/>
+                <outlet property="followTitleLabel" destination="S3p-4a-1DN" id="Db4-p8-FMp"/>
+                <outlet property="followView" destination="jGG-tU-Sdp" id="njs-8v-MH5"/>
+                <outlet property="followedCountLabel" destination="dv6-Lm-ogv" id="fBz-mc-rOK"/>
+                <outlet property="followedTitleLabel" destination="nZQ-Nh-G1h" id="MGq-sm-s0w"/>
+                <outlet property="followedView" destination="thJ-eM-7PB" id="0dR-tI-KuG"/>
+                <outlet property="unFollowButton" destination="gOx-IW-Bd7" id="fbM-Kf-xYO"/>
+            </connections>
+            <point key="canvasLocation" x="341" y="342"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cellFollow" width="32" height="32"/>
+        <image name="cellFollowed" width="32" height="32"/>
+    </resources>
+</document>
