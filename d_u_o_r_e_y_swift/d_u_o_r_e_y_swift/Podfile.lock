@@ -1,0 +1,136 @@
+PODS:
+  - AFNetworking (2.5.3):
+    - AFNetworking/NSURLConnection (= 2.5.3)
+    - AFNetworking/NSURLSession (= 2.5.3)
+    - AFNetworking/Reachability (= 2.5.3)
+    - AFNetworking/Security (= 2.5.3)
+    - AFNetworking/Serialization (= 2.5.3)
+    - AFNetworking/UIKit (= 2.5.3)
+  - AFNetworking/NSURLConnection (2.5.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.3)
+  - AFNetworking/Security (2.5.3)
+  - AFNetworking/Serialization (2.5.3)
+  - AFNetworking/UIKit (2.5.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AMPopTip (0.7.1)
+  - CHTumblrMenu (0.1)
+  - CocoaSoundCloudAPI (1.0.2):
+    - NXOAuth2Client (= 1.2.2)
+  - CocoaSoundCloudUI (1.0.9):
+    - CocoaSoundCloudAPI (~> 1.0.2)
+    - OHAttributedLabel
+  - CTFeedback (1.0.17)
+  - HMSegmentedControl (1.5.1)
+  - iVersion (1.11.4)
+  - JSONKit (1.4)
+  - Mantle (2.0):
+    - Mantle/extobjc (= 2.0)
+  - Mantle/extobjc (2.0)
+  - NXOAuth2Client (1.2.2)
+  - OBSlider (1.1.1)
+  - OHAttributedLabel (3.5.5)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
+  - SHEmailValidator (1.0.2)
+  - SVProgressHUD (1.1.3)
+  - UAAppReviewManager (0.2.6)
+  - UALogger (0.3)
+  - YLLibrary (0.0.7):
+    - YLLibrary/Foundation (= 0.0.7)
+    - YLLibrary/Security (= 0.0.7)
+    - YLLibrary/UIKit (= 0.0.7)
+  - YLLibrary/Foundation (0.0.7):
+    - YLLibrary/Foundation/ClusterPrePermissions (= 0.0.7)
+    - YLLibrary/Foundation/Network (= 0.0.7)
+    - YLLibrary/Foundation/NSDate (= 0.0.7)
+    - YLLibrary/Foundation/NSDictionary (= 0.0.7)
+    - YLLibrary/Foundation/NSFilemanager (= 0.0.7)
+    - YLLibrary/Foundation/NSString (= 0.0.7)
+    - YLLibrary/Foundation/NSURL (= 0.0.7)
+    - YLLibrary/Foundation/UIImage (= 0.0.7)
+  - YLLibrary/Foundation/ClusterPrePermissions (0.0.7)
+  - YLLibrary/Foundation/Network (0.0.7)
+  - YLLibrary/Foundation/NSDate (0.0.7)
+  - YLLibrary/Foundation/NSDictionary (0.0.7)
+  - YLLibrary/Foundation/NSFilemanager (0.0.7)
+  - YLLibrary/Foundation/NSString (0.0.7)
+  - YLLibrary/Foundation/NSURL (0.0.7)
+  - YLLibrary/Foundation/UIImage (0.0.7)
+  - YLLibrary/Security (0.0.7):
+    - YLLibrary/Security/GTMBase64 (= 0.0.7)
+  - YLLibrary/Security/GTMBase64 (0.0.7)
+  - YLLibrary/UIKit (0.0.7):
+    - YLLibrary/UIKit/UIActionSheet (= 0.0.7)
+    - YLLibrary/UIKit/UIColor (= 0.0.7)
+    - YLLibrary/UIKit/UIImage (= 0.0.7)
+    - YLLibrary/UIKit/UILabel (= 0.0.7)
+    - YLLibrary/UIKit/UINavigation (= 0.0.7)
+    - YLLibrary/UIKit/UITabbarController (= 0.0.7)
+    - YLLibrary/UIKit/YLRefresh (= 0.0.7)
+  - YLLibrary/UIKit/UIActionSheet (0.0.7)
+  - YLLibrary/UIKit/UIColor (0.0.7)
+  - YLLibrary/UIKit/UIImage (0.0.7)
+  - YLLibrary/UIKit/UILabel (0.0.7)
+  - YLLibrary/UIKit/UINavigation (0.0.7)
+  - YLLibrary/UIKit/UITabbarController (0.0.7)
+  - YLLibrary/UIKit/YLRefresh (0.0.7)
+
+DEPENDENCIES:
+  - AFNetworking
+  - AMPopTip
+  - CHTumblrMenu
+  - CocoaSoundCloudAPI
+  - CocoaSoundCloudUI
+  - CTFeedback
+  - HMSegmentedControl
+  - iVersion
+  - JSONKit
+  - Mantle
+  - OBSlider
+  - SDWebImage
+  - SHEmailValidator
+  - SVProgressHUD
+  - UAAppReviewManager
+  - UALogger
+  - YLLibrary (from `git@git.easeus.com:iosframework/ylkit.git`)
+
+EXTERNAL SOURCES:
+  YLLibrary:
+    :git: git@git.easeus.com:iosframework/ylkit.git
+
+CHECKOUT OPTIONS:
+  YLLibrary:
+    :commit: 5004e8a8ef7537f64755c7d37910f928aadb4f87
+    :git: git@git.easeus.com:iosframework/ylkit.git
+
+SPEC CHECKSUMS:
+  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  AMPopTip: 5a78abc067fe3e2fb5d3980072ffae51c8c4f6c5
+  CHTumblrMenu: 2beb20049a07723d33f76cbd891ea02879d35a43
+  CocoaSoundCloudAPI: bef452c90f3a3af6de41a620d7d156d716d68f79
+  CocoaSoundCloudUI: f5aed254f432bc68a5a3570b74cdd6d18ce7b037
+  CTFeedback: 8706fc51355f04646262441193983f6d10702d0c
+  HMSegmentedControl: 35460abdd15c3087368db2d3d956717f088b34d1
+  iVersion: 2b6ffe708672cb494ba3cab150a94800c2892e81
+  JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
+  Mantle: 17de73ef929db2234d76fde2aacfb89ab11c61e8
+  NXOAuth2Client: 492f961d549c411b344cfae861de0dc63b176edc
+  OBSlider: 38853ebbb9cc6978a9b7ddc0d4f525588e8bb294
+  OHAttributedLabel: 9b2eb99323dee6b3a81ef3bc8e98b084117bca2d
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  SHEmailValidator: b897320322e52eddc894173ef6fa8f98ca7e3639
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  UAAppReviewManager: 334bdb0085c3f80c7b696f33edc53667eda548e6
+  UALogger: ccc041e5982dbd274ab5805f914076fef9bf29cf
+  YLLibrary: 048e131804558145325a1beecfa27886e12e3f6f
+
+COCOAPODS: 0.36.3

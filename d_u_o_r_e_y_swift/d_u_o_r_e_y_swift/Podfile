@@ -1,0 +1,28 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, ‘7.0’
+
+pod 'UALogger'
+pod 'AFNetworking'
+pod 'OBSlider'
+pod 'iVersion'
+pod 'SVProgressHUD'
+pod 'UAAppReviewManager'
+pod 'HMSegmentedControl'
+pod 'CHTumblrMenu'
+pod 'CTFeedback'
+pod 'Mantle'
+pod 'SHEmailValidator'
+pod 'AMPopTip'
+pod 'CocoaSoundCloudAPI'
+pod 'CocoaSoundCloudUI'
+pod 'SDWebImage'
+pod 'JSONKit'
+pod 'YLLibrary', :git=>'git@git.easeus.com:iosframework/ylkit.git'
+target 'd_u_o_r_e_y_swift' do
+
+end
+
+target 'd_u_o_r_e_y_swiftTests' do
+
+end
+

@@ -1,0 +1,6 @@
+#include "Pods-d_u_o_r_e_y_swift-CHTumblrMenu.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/CHTumblrMenu" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/AMPopTip" "${PODS_ROOT}/Headers/Public/CHTumblrMenu" "${PODS_ROOT}/Headers/Public/CTFeedback" "${PODS_ROOT}/Headers/Public/CocoaSoundCloudAPI" "${PODS_ROOT}/Headers/Public/CocoaSoundCloudUI" "${PODS_ROOT}/Headers/Public/HMSegmentedControl" "${PODS_ROOT}/Headers/Public/JSONKit" "${PODS_ROOT}/Headers/Public/Mantle" "${PODS_ROOT}/Headers/Public/NXOAuth2Client" "${PODS_ROOT}/Headers/Public/OBSlider" "${PODS_ROOT}/Headers/Public/OHAttributedLabel" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/SHEmailValidator" "${PODS_ROOT}/Headers/Public/SVProgressHUD" "${PODS_ROOT}/Headers/Public/UAAppReviewManager" "${PODS_ROOT}/Headers/Public/UALogger" "${PODS_ROOT}/Headers/Public/YLLibrary" "${PODS_ROOT}/Headers/Public/iVersion"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

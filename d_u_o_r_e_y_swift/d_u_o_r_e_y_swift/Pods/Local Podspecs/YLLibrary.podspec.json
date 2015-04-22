@@ -1,0 +1,119 @@
+{
+  "name": "YLLibrary",
+  "version": "0.0.7",
+  "summary": "yile library",
+  "description": "                       Yile library\n",
+  "homepage": "http://git.easeus.com/iosframework/ylkit",
+  "license": "MIT",
+  "authors": {
+    "何勇": "40924497@qq.com"
+  },
+  "source": {
+    "git": "git@git.easeus.com:iosframework/ylkit.git",
+    "tag": "0.0.7"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "public_header_files": "YLLibrary/*.h",
+  "source_files": "YLLibrary/YLLibrary.h",
+  "resource_bundles": {
+    "NSDateTimeAgo": [
+      "YLLibrary/Foundation/NSDate/NSDateTimeAgo.bundle/"
+    ],
+    "YLRefresh": [
+      "YLLibrary/UIKit/YLRefresh/YLRefresh.bundle/"
+    ]
+  },
+  "frameworks": [
+    "QuartzCore",
+    "CoreGraphics",
+    "AddressBook",
+    "AssetsLibrary",
+    "EventKit",
+    "CoreLocation"
+  ],
+  "subspecs": [
+    {
+      "name": "Foundation",
+      "subspecs": [
+        {
+          "name": "ClusterPrePermissions",
+          "source_files": "YLLibrary/Foundation/ClusterPrePermissions/ClusterPrePermissions.{h,m}"
+        },
+        {
+          "name": "Network",
+          "source_files": "YLLibrary/Foundation/Network/*.{h,m}"
+        },
+        {
+          "name": "NSDate",
+          "source_files": "YLLibrary/Foundation/NSDate/*.{h,m,bundle}"
+        },
+        {
+          "name": "NSDictionary",
+          "source_files": "YLLibrary/Foundation/NSDictionary/*.{h,m}"
+        },
+        {
+          "name": "NSFilemanager",
+          "source_files": "YLLibrary/Foundation/NSFilemanager/*.{h,m}"
+        },
+        {
+          "name": "NSString",
+          "source_files": "YLLibrary/Foundation/NSString/*.{h,m}"
+        },
+        {
+          "name": "NSURL",
+          "source_files": "YLLibrary/Foundation/NSURL/*.{h,m}"
+        },
+        {
+          "name": "UIImage",
+          "source_files": "YLLibrary/Foundation/UIImage/*.{h,m}"
+        }
+      ]
+    },
+    {
+      "name": "Security",
+      "source_files": "YLLibrary/Security/*.{h,m}",
+      "subspecs": [
+        {
+          "name": "GTMBase64",
+          "source_files": "YLLibrary/Security/GTMBase64/*.{h,m}"
+        }
+      ]
+    },
+    {
+      "name": "UIKit",
+      "subspecs": [
+        {
+          "name": "UIActionSheet",
+          "source_files": "YLLibrary/UIKit/UIActionSheet/*.{h,m}"
+        },
+        {
+          "name": "UIColor",
+          "source_files": "YLLibrary/UIKit/UIColor/*.{h,m}"
+        },
+        {
+          "name": "UIImage",
+          "source_files": "YLLibrary/UIKit/UIImage/*.{h,m}"
+        },
+        {
+          "name": "UILabel",
+          "source_files": "YLLibrary/UIKit/UILabel/*.{h,m}"
+        },
+        {
+          "name": "UINavigation",
+          "source_files": "YLLibrary/UIKit/UINavigation/*.{h,m}"
+        },
+        {
+          "name": "UITabbarController",
+          "source_files": "YLLibrary/UIKit/UITabbarController/*.{h,m}"
+        },
+        {
+          "name": "YLRefresh",
+          "source_files": "YLLibrary/UIKit/YLRefresh/*.{h,m,bundle}"
+        }
+      ]
+    }
+  ]
+}

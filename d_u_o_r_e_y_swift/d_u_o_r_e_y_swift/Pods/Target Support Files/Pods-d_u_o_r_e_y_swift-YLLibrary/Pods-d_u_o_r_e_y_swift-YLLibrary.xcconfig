@@ -1,0 +1,1 @@
+PODS_D_U_O_R_E_Y_SWIFT_YLLIBRARY_OTHER_LDFLAGS = -framework "AddressBook" -framework "AssetsLibrary" -framework "CoreGraphics" -framework "CoreLocation" -framework "EventKit" -framework "QuartzCore"
