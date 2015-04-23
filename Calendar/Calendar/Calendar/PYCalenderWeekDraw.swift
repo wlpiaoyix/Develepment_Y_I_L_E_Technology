@@ -9,19 +9,22 @@
 import UIKit
 
 public class PYCalenderWeekDraw: NSObject {
-    public var weekWorkFont = UIFont.systemFontOfSize(18)
+    public var weekWorkFont = UIFont.systemFontOfSize(12)
     public var weekWorkColor = UIColor.blackColor()
-    public var weekendFont = UIFont.systemFontOfSize(18)
+    public var weekendFont = UIFont.systemFontOfSize(12)
     public var weekendColor = UIColor.redColor()
     
     public func draw(#context:CGContextRef?, drawDic:NSDictionary, structDic:NSDictionary, boundSize:CGSize){
-        var attributes = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue) as! NSArray;
+        var values = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue) as! NSArray;
         var index:Int = 0;
-        for attribute in attributes {
+        for value in values {
             var rect = CGRectMake(0, 0, boundSize.width, boundSize.height)
             var structs = structDic.valueForKey(self.classForCoder.getWeekKey(index: index) as String) as! PYCalssCalenderStruct
-            rect.origin = structs.origin
-            PYCalGraphicsDraw.drawText(context: context, attribute: attribute as! NSMutableAttributedString , rect: rect, y: boundSize.height, scaleFlag: false);
+            var attribute:NSMutableAttributedString?
+            var origin:CGPoint?
+            PYCalCreateStructs(structs, value as! String, &attribute, &origin)
+            rect.origin = origin!
+            PYCalGraphicsDraw.drawText(context: context, attribute: attribute, rect: rect, y: boundSize.height, scaleFlag: false);
             index++
         }
     }
@@ -29,9 +32,8 @@ public class PYCalenderWeekDraw: NSObject {
         var index:Int = 0
         let endIndex:Int = PYLetCalenderWeekDays.count-1;
         var weekAttributes = NSMutableArray();
+        var point = CGPointMake(0, offH);
         for weekDay in PYLetCalenderWeekDays {
-            var attribute:NSMutableAttributedString = NSMutableAttributedString(string:weekDay)
-            var range = NSMakeRange(0, attribute.length);
             var color:UIColor?
             var font:UIFont?
             switch index {
@@ -44,34 +46,19 @@ public class PYCalenderWeekDraw: NSObject {
                 font = weekWorkFont
                 break
             }
-            attribute.addAttribute(kCTForegroundColorAttributeName as String, value: color!, range: range)
-            attribute.addAttribute(kCTFontAttributeName as String, value: font!, range: range)
-            weekAttributes.addObject(attribute)
+            
+            var key = self.classForCoder.getWeekKey(index: index) as String
+            
+            var structs:PYCalssCalenderStruct?
+            PYCalSetStructs(index: index, 0, font!, color!, itemSize, point, &structs)
+            
+            point.x += structs!.size.width
+            structDic.setValue(structs, forKey: key);
+            
+            weekAttributes.addObject(weekDay)
             index++
         }
         drawDic.setObject(weekAttributes, forKey: PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue)
-        
-        var point = CGPointMake(0, offH);
-        for var i = 0; i < 7; i++ {
-            
-            var font:UIFont?
-            switch i {
-            case 0,endIndex:
-                font = weekendFont
-                break
-            default:
-                font = weekWorkFont
-                break
-            }
-            var height:CGFloat = font!.getTextHeight();
-            
-            var sizeWeekend = PYCalUnit.getBoundSize(text: PYLetCalenderWeekDays[i], font: font!, size: CGSizeMake(999, height));
-            
-            var key = self.classForCoder.getWeekKey(index: i) as String
-            var structs = PYCalssCalenderStruct(point: point, origin: CGPointMake(point.x + (itemSize.width - sizeWeekend.width)/2, point.y + (itemSize.height - sizeWeekend.height)/2), size: itemSize, key: key);
-            point.x += structs.size.width
-            structDic.setValue(structs, forKey: key);
-        }
     }
     public class func getWeekKey(#index:Int)->NSString{
         return NSString(format: "week%d", index);

@@ -108,7 +108,6 @@
 				7CC6B5411AE765C0000561C8 /* LaunchScreen.xib */,
 				7CC6B5371AE765C0000561C8 /* Calendar.xcdatamodeld */,
 				7CC6B5331AE765C0000561C8 /* Supporting Files */,
-				7CC6B5581AE76662000561C8 /* PYCalGraphicsDraw.swift */,
 				7CC6B55A1AE76680000561C8 /* TestView.swift */,
 				7C7665951AE8807E00C939A8 /* PYCalendarDic.swift */,
 				7CC6B55E1AE797B3000561C8 /* NSDate+PYCalExpand.swift */,
@@ -119,6 +118,7 @@
 				7C7665991AE8C0B800C939A8 /* PYCalenderDayDraw.swift */,
 				7CD7213E1AE8DA8100F318B3 /* PYCalendarView.swift */,
 				7CD721401AE8DBC000F318B3 /* PYGraphicsLayer.swift */,
+				7CC6B5581AE76662000561C8 /* PYCalGraphicsDraw.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";

@@ -25,6 +25,15 @@ extension NSDate {
         return date
     }
     
+    func offsetYear(numYears:Int)->NSDate?{
+        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        gregorian?.firstWeekday = 1
+        var offsetComponents = NSDateComponents()
+        offsetComponents.year = numYears
+        var date = gregorian?.dateByAddingComponents(offsetComponents, toDate: self, options: NSCalendarOptions.allZeros)
+        return date
+    }
+    
     
     func dateFormate(formatePattern:NSString?)->NSString{
         var dft = NSDateFormatter();

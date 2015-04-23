@@ -9,8 +9,8 @@
 import UIKit
 
 protocol PYCalendarDrawDelegate : class {
-    func touchUp(#key:NSString, point:CGPoint)
-    func drawEnd(#height:CGFloat);
+    func touchUp(#structs:PYCalssCalenderStruct, point:CGPoint)
+    func drawBefore(#height:CGFloat);
 }
 
 class PYCalendarDraw: UIView {
@@ -25,8 +25,6 @@ class PYCalendarDraw: UIView {
     
     private var weekDraw = PYCalenderWeekDraw()
     private var dayDraw = PYCalenderDayDraw()
-    
-    private var height:CGFloat?
     
     private var thumb:PYGraphicsThumb?
     
@@ -54,18 +52,22 @@ class PYCalendarDraw: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.8, alpha: 0.6)
+        self.backgroundColor = UIColor.clearColor()
     }
     
     private func startDraw(#context:CGContextRef?){
-        
         self.dayDraw.currentDate = self.currentDate;
-        var hOff:CGFloat = 10;
-        var size = CGSizeMake(self.frame.size.width/7, 40)
+        var hOff:CGFloat = 0;
+        var size = CGSizeMake(self.frame.size.width/7, 30)
         self.weekDraw.setDraw(drawDic: self.drawDic, structDic: self.structDic, itemSize:size, offH:hOff)
         hOff += size.height
         
+        var height:CGFloat?
         self.dayDraw.setDraw(drawDic: self.drawDic, structDic: self.structDic, itemSize: size, offH: hOff, poinerHieght: &height)
+        
+        if(self.delegateDraw != nil){
+            self.delegateDraw!.drawBefore(height: height!)
+        }
         
         PYCalGraphicsDraw.drawText(context: context, attribute: NSMutableAttributedString(string: ""), rect: self.bounds, y: self.bounds.size.height, scaleFlag: true)
         
@@ -93,7 +95,7 @@ class PYCalendarDraw: UIView {
             var key:NSString?
             self.checkStructDic(point: point, pointerStruct: &structs, pointerKey: &key)
             if(key != nil && self.delegateDraw != nil){
-                self.delegateDraw!.touchUp(key: key!, point: point)
+                self.delegateDraw!.touchUp(structs:structs!, point: point)
             }
         }
     }
@@ -102,15 +104,10 @@ class PYCalendarDraw: UIView {
         
     }
     
-    
-    
     private func initParam(){
         self.setCurrentDate(NSDate());
         self.thumb = PYGraphicsThumb.newInstance(view: self, callback: { (contextRef, userInfo) -> Void in
             self.startDraw(context: contextRef)
-            if(self.delegateDraw != nil){
-                self.delegateDraw!.drawEnd(height: self.height!)
-            }
         })
     }
     

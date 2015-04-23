@@ -10,18 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var view01: PYCalendarView!
     var test:TestView! = TestView();
     override func viewDidLoad() {
         super.viewDidLoad()
-        var avd = PYCalendarView()
-        avd.frame = CGRectMake(0, 30, 320, 320)
-        self.view.addSubview(avd)
-        avd.backgroundColor = UIColor.clearColor()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func viewWillLayoutSubviews() {
         self.test.frame = self.view.frame;
+    }
+    @IBAction func onclick1(sender: AnyObject) {
+        view01.offsetMonth(-1)
+    }
+    @IBAction func onclick2(sender: AnyObject) {
+        view01.offsetMonth(1)
     }
     
     override func didReceiveMemoryWarning() {

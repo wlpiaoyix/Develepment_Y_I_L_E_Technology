@@ -12,8 +12,6 @@ class PYCalendarView: UIView,PYCalendarDrawDelegate {
     private var drawView = PYCalendarDraw()
     private var flagDisplay = false
     
-    var button = UIButton.buttonWithType(UIButtonType.ContactAdd) as! UIButton
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.initParam()
@@ -26,36 +24,44 @@ class PYCalendarView: UIView,PYCalendarDrawDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         var frame = self.bounds
-        frame.origin.y = 60
-        self.drawView.frame = frame
-        self.backgroundColor = UIColor(red: 0.8, green: 0.9, blue: 0.9, alpha: 0.6)
-        self.clipsToBounds = true
+        if(frame.size.width != self.drawView.frame.size.width){
+            frame.origin.y = 0
+            frame.size.height *= 2;
+            self.drawView.frame = frame
+            self.clipsToBounds = true
+        }
+    }
+    func offsetMonth(month:Int){
+        var date = self.drawView.getCurrentDate().offsetMonth(month)
+        self.setDate(date: date!)
+    }
+    func offsetYear(year:Int){
+        var date = self.drawView.getCurrentDate().offsetYear(year)
+        self.setDate(date: date!)
+    }
+    func setDate(#date:NSDate){
+        self.drawView.setCurrentDate(date)
+        self.drawView.displayLayerDate()
+    }
+    func getDate()->NSDate{
+        return self.drawView.getCurrentDate()
     }
     
-    func touchUp(#key:NSString, point:CGPoint){
-        println(key)
+    
+    func touchUp(#structs:PYCalssCalenderStruct, point:CGPoint){
+        println(NSString(format: "%d", structs.index))
     }
-    func drawEnd(#height:CGFloat){
+    
+    func drawBefore(#height:CGFloat){
         var frame = self.frame
-        frame.size.height = height+60
+        frame.size.height = height
         self.frame = frame
-    }
-    func onclick(){
-        var month = self.drawView.getCurrentDate().month()
-        var date = self.drawView.getCurrentDate().offsetMonth(1)
-        self.drawView.setCurrentDate(date!)
-        
-        self.drawView.displayLayerDate()
     }
     
     private func initParam(){
         self.drawView.removeFromSuperview()
         self.addSubview(drawView)
         self.drawView.delegateDraw = self
-        
-        self.button.addTarget(self, action: "onclick", forControlEvents: UIControlEvents.TouchUpInside)
-        self.button.frame = CGRectMake(0, 0, 80, 40)
-        self.addSubview(self.button)
     }
     
 }
