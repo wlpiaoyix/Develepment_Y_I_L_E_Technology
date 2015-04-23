@@ -32,9 +32,6 @@ public class PYCalGraphicsDraw: NSObject {
         CGContextSetLineCap(ctx, kCGLineCapRound)
         CGContextSetLineJoin(ctx, kCGLineJoinRound)
         
-        //        //（上下文，起点的偏移量，事例描述的时20像素的虚线10的空格，数组有2个元素）
-        //        CGContextSetLineDash(ctx, 0, lengths, count);
-        
         //线条颜色
         CGContextSetStrokeColorWithColor(ctx, lineColor)
         

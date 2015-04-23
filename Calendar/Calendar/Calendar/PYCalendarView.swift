@@ -2,73 +2,60 @@
 //  PYCalendarView.swift
 //  Calendar
 //
-//  Created by ydb on 15/4/22.
+//  Created by ydb on 15/4/23.
 //  Copyright (c) 2015年 wlpiaoyi. All rights reserved.
 //
 
 import UIKit
 
-let PYCalendarDicKeyYearAttribute = "asdsdeegh"
-
-
-public class PYCalendarView: UIView {
-    public var yearFont = UIFont.boldSystemFontOfSize(24);
-    public var yearColor = UIColor.redColor();
+class PYCalendarView: UIView,PYCalendarDrawDelegate {
+    private var drawView = PYCalendarDraw()
+    private var flagDisplay = false
     
-    private var drawDic = NSMutableDictionary();
-    private var currentDate = NSDate();
-    private var scaleFlag = false;
+    var button = UIButton.buttonWithType(UIButtonType.ContactAdd) as! UIButton
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.initParam()
     }
-
-    required public init(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.initParam()
     }
-    
-    
-    public func setCurrentDate(date:NSDate){
-        currentDate = date;
-        drawDic.removeAllObjects()
-        self.setDrawYear(date: currentDate);
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        var frame = self.bounds
+        frame.origin.y = 60
+        self.drawView.frame = frame
+        self.backgroundColor = UIColor(red: 0.8, green: 0.9, blue: 0.9, alpha: 0.6)
+        self.clipsToBounds = true
     }
     
-    
-    override public func drawRect(rect: CGRect) {
-        self.startDraw(context: nil)
+    func touchUp(#key:NSString, point:CGPoint){
+        println(key)
     }
-    private func startDraw(#context:CGContextRef?){
-        if(self.scaleFlag == false){
-            
-            PYCalGraphicsDraw.drawText(context: context, attribute: NSMutableAttributedString(string: ""), rect: self.bounds, y: self.bounds.size.height, scaleFlag: true)
-            self.scaleFlag = true;
-        }
-        self.drawYear(context: nil, point: CGPointMake(10, 10));
+    func drawEnd(#height:CGFloat){
+        var frame = self.frame
+        frame.size.height = height+60
+        self.frame = frame
+    }
+    func onclick(){
+        var month = self.drawView.getCurrentDate().month()
+        var date = self.drawView.getCurrentDate().offsetMonth(1)
+        self.drawView.setCurrentDate(date!)
+        
+        self.drawView.displayLayerDate()
     }
     
     private func initParam(){
-        self.setCurrentDate(NSDate());
+        self.drawView.removeFromSuperview()
+        self.addSubview(drawView)
+        self.drawView.delegateDraw = self
+        
+        self.button.addTarget(self, action: "onclick", forControlEvents: UIControlEvents.TouchUpInside)
+        self.button.frame = CGRectMake(0, 0, 80, 40)
+        self.addSubview(self.button)
     }
     
-    private func drawYear(#context:CGContextRef?, point:CGPoint){
-        var attribute = drawDic.objectForKey(PYCalendarDicKeyYearAttribute) as? NSMutableAttributedString;
-        if(attribute != nil){
-            var rect = self.frame
-            rect.origin = point
-            PYCalGraphicsDraw.drawText(context: context, attribute: attribute, rect: rect, y: self.bounds.size.height, scaleFlag: false);
-        }
-    }
-    private func setDrawYear(#date:NSDate){
-        var text = currentDate.dateFormate("YYYY-MM-dd");
-        var range = NSMakeRange(0, text.length)
-        var attribute:NSMutableAttributedString = NSMutableAttributedString(string:text as String)
-        attribute.addAttribute(kCTForegroundColorAttributeName as String, value: yearColor, range: range)
-        attribute.addAttribute(kCTFontAttributeName as String, value: yearFont, range: range)
-        drawDic.setObject(attribute, forKey: PYCalendarDicKeyYearAttribute)
-    }
-
-
 }

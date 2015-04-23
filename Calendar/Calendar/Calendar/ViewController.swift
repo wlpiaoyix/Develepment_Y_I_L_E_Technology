@@ -13,8 +13,6 @@ class ViewController: UIViewController {
     var test:TestView! = TestView();
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.addSubview(self.test);
-//        self.test.backgroundColor = UIColor.clearColor();
         var avd = PYCalendarView()
         avd.frame = CGRectMake(0, 30, 320, 320)
         self.view.addSubview(avd)

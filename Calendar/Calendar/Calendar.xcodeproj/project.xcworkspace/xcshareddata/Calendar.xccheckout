@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>DD781794-DB80-4630-91DE-9151859BF068</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Calendar</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>FD4A43BACABD7683C6D4F5CFCEC8C5F2557F252B</key>
 		<string>https://github.com/wlpiaoyix/Develepment_Y_I_L_E_Technology.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Calendar/Calendar/Calendar.xcodeproj</string>
+	<string>Calendar/Calendar/Calendar.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>FD4A43BACABD7683C6D4F5CFCEC8C5F2557F252B</key>
