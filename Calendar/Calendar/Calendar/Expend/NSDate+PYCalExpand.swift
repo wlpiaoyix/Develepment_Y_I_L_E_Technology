@@ -8,14 +8,34 @@
 
 import Foundation
 
+
+
 extension NSDate {
     
+    func day()->Int?{
+        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        var components = gregorian?.components(NSCalendarUnit.DayCalendarUnit, fromDate: self)
+        return components?.month
+    }
     func month()->Int?{
         var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
         var components = gregorian?.components(NSCalendarUnit.MonthCalendarUnit, fromDate: self)
         return components?.month
     }
+    func Year()->Int?{
+        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        var components = gregorian?.components(NSCalendarUnit.YearCalendarUnit, fromDate: self)
+        return components?.month
+    }
     
+    func offsetDay(numDays:Int)->NSDate?{
+        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        gregorian?.firstWeekday = 1
+        var offsetComponents = NSDateComponents()
+        offsetComponents.day = numDays
+        var date = gregorian?.dateByAddingComponents(offsetComponents, toDate: self, options: NSCalendarOptions.allZeros)
+        return date
+    }
     func offsetMonth(numMonths:Int)->NSDate?{
         var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
         gregorian?.firstWeekday = 1
@@ -24,7 +44,6 @@ extension NSDate {
         var date = gregorian?.dateByAddingComponents(offsetComponents, toDate: self, options: NSCalendarOptions.allZeros)
         return date
     }
-    
     func offsetYear(numYears:Int)->NSDate?{
         var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
         gregorian?.firstWeekday = 1
@@ -33,8 +52,6 @@ extension NSDate {
         var date = gregorian?.dateByAddingComponents(offsetComponents, toDate: self, options: NSCalendarOptions.allZeros)
         return date
     }
-    
-    
     func dateFormate(formatePattern:NSString?)->NSString{
         var dft = NSDateFormatter();
         var dateFormat = ((formatePattern == nil || formatePattern!.length == 0) ? "yyyy-MM-dd HH:mm:ss" : formatePattern) as! String

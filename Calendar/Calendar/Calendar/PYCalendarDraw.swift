@@ -15,6 +15,12 @@ protocol PYCalendarDrawDelegate : class {
 
 class PYCalendarDraw: UIView {
     
+    var drawOpteHandler:PYCaldrawOpteHandler?
+    var userInfo:AnyObject?
+    var heightHead:CGFloat = 30
+    var heightCell:CGFloat = 30
+    var flagAutoHeight = true
+    
     weak var delegateDraw:PYCalendarDrawDelegate?
     
     private var structDic = NSMutableDictionary()
@@ -53,14 +59,29 @@ class PYCalendarDraw: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.backgroundColor = UIColor.clearColor()
+    
     }
     
     private func startDraw(#context:CGContextRef?){
         self.dayDraw.currentDate = self.currentDate;
+        if(flagAutoHeight == true){
+            var firstWeekDay = self.currentDate.firstWeekDayInMonth()
+            var numDays = self.currentDate.numDaysInMounth()
+            numDays += firstWeekDay
+            var maxRow = 0;
+            if(numDays % PYLetCalenderWeekDays.count > 0){
+                numDays -= numDays % PYLetCalenderWeekDays.count;
+                ++maxRow;
+            }
+            maxRow += numDays / PYLetCalenderWeekDays.count
+            self.heightCell = (self.frame.size.height / 2 - self.heightHead) / CGFloat(maxRow)
+        }
+        
         var hOff:CGFloat = 0;
-        var size = CGSizeMake(self.frame.size.width/7, 30)
+        var size = CGSizeMake(self.frame.size.width/CGFloat(PYLetCalenderWeekDays.count), self.heightHead)
         self.weekDraw.setDraw(drawDic: self.drawDic, structDic: self.structDic, itemSize:size, offH:hOff)
         hOff += size.height
+        size.height = self.heightCell
         
         var height:CGFloat?
         self.dayDraw.setDraw(drawDic: self.drawDic, structDic: self.structDic, itemSize: size, offH: hOff, poinerHieght: &height)
@@ -69,10 +90,8 @@ class PYCalendarDraw: UIView {
             self.delegateDraw!.drawBefore(height: height!)
         }
         
-        PYCalGraphicsDraw.drawText(context: context, attribute: NSMutableAttributedString(string: ""), rect: self.bounds, y: self.bounds.size.height, scaleFlag: true)
-        
-        self.weekDraw.draw(context: context, drawDic: self.drawDic, structDic: self.structDic, boundSize: self.bounds.size)
-        self.dayDraw.draw(context: context, drawDic: self.drawDic, structDic: self.structDic, boundSize: self.bounds.size)
+        self.weekDraw.draw(context: context, drawDic: self.drawDic, structDic: self.structDic, boundSize: self.bounds.size, drawOpteHandler:drawOpteHandler, userInfo:userInfo)
+        self.dayDraw.draw(context: context, drawDic: self.drawDic, structDic: self.structDic, boundSize: self.bounds.size ,drawOpteHandler:drawOpteHandler, userInfo:userInfo)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -107,8 +126,18 @@ class PYCalendarDraw: UIView {
     private func initParam(){
         self.setCurrentDate(NSDate());
         self.thumb = PYGraphicsThumb.newInstance(view: self, callback: { (contextRef, userInfo) -> Void in
+            
+            PYCalGraphicsDraw.drawText(context: contextRef, attribute: NSMutableAttributedString(string: ""), rect: self.bounds, y: self.bounds.size.height, scaleFlag: true)
             self.startDraw(context: contextRef)
+            
         })
+        
+        self.layer.shadowRadius = 1;
+        self.layer.shadowOpacity = 1;
+        self.layer.shadowPath = nil;
+        self.layer.shadowColor = UIColor.whiteColor().CGColor
+        self.layer.shadowOffset = CGSizeMake(2, 2);
+        self.clipsToBounds = false;
     }
     
     
@@ -135,6 +164,8 @@ class PYCalendarDraw: UIView {
         }
         return point
     }
-
-
 }
+
+//func PYCaldrawOpteHandlerImpl(context:CGContextRef?, structs:PYCalssCalenderStruct, pointerAttribute:UnsafeMutablePointer<NSMutableAttributedString?>, pointerOrigin:UnsafeMutablePointer<CGPoint?>, userInfo:AnyObject?){
+//    
+//}

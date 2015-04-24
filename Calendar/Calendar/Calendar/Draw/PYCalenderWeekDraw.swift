@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class PYCalenderWeekDraw: NSObject {
-    public var weekWorkFont = UIFont.systemFontOfSize(12)
-    public var weekWorkColor = UIColor.blackColor()
-    public var weekendFont = UIFont.systemFontOfSize(12)
-    public var weekendColor = UIColor.redColor()
+class PYCalenderWeekDraw: NSObject {
+    var weekWorkFont = UIFont.systemFontOfSize(12)
+    var weekWorkColor = UIColor.blackColor()
+    var weekendFont = UIFont.systemFontOfSize(12)
+    var weekendColor = UIColor.redColor()
     
-    public func draw(#context:CGContextRef?, drawDic:NSDictionary, structDic:NSDictionary, boundSize:CGSize){
+    func draw(#context:CGContextRef?, drawDic:NSDictionary, structDic:NSDictionary, boundSize:CGSize, drawOpteHandler:PYCaldrawOpteHandler?, userInfo:AnyObject?){
         var values = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue) as! NSArray;
         var index:Int = 0;
         for value in values {
@@ -22,13 +22,16 @@ public class PYCalenderWeekDraw: NSObject {
             var structs = structDic.valueForKey(self.classForCoder.getWeekKey(index: index) as String) as! PYCalssCalenderStruct
             var attribute:NSMutableAttributedString?
             var origin:CGPoint?
-            PYCalCreateStructs(structs, value as! String, &attribute, &origin)
+            PYCalCreateAttribute(structs, value as! String, &attribute, &origin)
+            if(drawOpteHandler != nil){
+                drawOpteHandler!(context!,structs,&attribute,&origin,userInfo)
+            }
             rect.origin = origin!
             PYCalGraphicsDraw.drawText(context: context, attribute: attribute, rect: rect, y: boundSize.height, scaleFlag: false);
             index++
         }
     }
-    public func setDraw(#drawDic:NSMutableDictionary, structDic:NSDictionary, itemSize:CGSize, offH:CGFloat){
+    func setDraw(#drawDic:NSMutableDictionary, structDic:NSDictionary, itemSize:CGSize, offH:CGFloat){
         var index:Int = 0
         let endIndex:Int = PYLetCalenderWeekDays.count-1;
         var weekAttributes = NSMutableArray();
@@ -60,7 +63,7 @@ public class PYCalenderWeekDraw: NSObject {
         }
         drawDic.setObject(weekAttributes, forKey: PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue)
     }
-    public class func getWeekKey(#index:Int)->NSString{
+    class func getWeekKey(#index:Int)->NSString{
         return NSString(format: "week%d", index);
     }
 }

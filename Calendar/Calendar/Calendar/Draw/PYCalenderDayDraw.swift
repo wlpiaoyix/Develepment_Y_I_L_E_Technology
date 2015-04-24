@@ -8,15 +8,14 @@
 
 import UIKit
 
-public class PYCalenderDayDraw: NSObject {
-    public var dayWorkFont = UIFont.systemFontOfSize(18)
-    public var dayWorkColor = UIColor.blackColor()
-    public var dayendFont = UIFont.systemFontOfSize(18)
-    public var dayendColor = UIColor.redColor()
-    public var currentDate:NSDate?
+class PYCalenderDayDraw: NSObject {
+    var dayWorkFont = UIFont.systemFontOfSize(18)
+    var dayWorkColor = UIColor.blackColor()
+    var dayendFont = UIFont.systemFontOfSize(18)
+    var dayendColor = UIColor.redColor()
+    var currentDate:NSDate?
     
-    
-    public func draw(#context:CGContextRef?, drawDic:NSDictionary, structDic:NSDictionary, boundSize:CGSize){
+    func draw(#context:CGContextRef?, drawDic:NSDictionary, structDic:NSDictionary, boundSize:CGSize, drawOpteHandler:PYCaldrawOpteHandler?, userInfo:AnyObject?){
         var values = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.Day.rawValue) as! NSArray;
         var index:Int = 1;
         for value in values {
@@ -24,13 +23,16 @@ public class PYCalenderDayDraw: NSObject {
             var structs = structDic.valueForKey(self.classForCoder.getWeekKey(index: index) as String) as! PYCalssCalenderStruct
             var attribute:NSMutableAttributedString?
             var origin:CGPoint?
-            PYCalCreateStructs(structs, value as! String, &attribute, &origin)
+            PYCalCreateAttribute(structs, value as! String, &attribute, &origin)
+            if(drawOpteHandler != nil){
+                drawOpteHandler!(context!,structs,&attribute,&origin,userInfo)
+            }
             rect.origin = origin!
             PYCalGraphicsDraw.drawText(context: context, attribute: attribute, rect: rect, y: boundSize.height, scaleFlag: false);
             index++
         }
     }
-    public func setDraw(#drawDic:NSMutableDictionary, structDic:NSDictionary, itemSize:CGSize, offH:CGFloat, poinerHieght:UnsafeMutablePointer<CGFloat?>?){
+    func setDraw(#drawDic:NSMutableDictionary, structDic:NSDictionary, itemSize:CGSize, offH:CGFloat, poinerHieght:UnsafeMutablePointer<CGFloat?>?){
         if(self.currentDate == nil){
             return
         }
@@ -81,7 +83,7 @@ public class PYCalenderDayDraw: NSObject {
             drawDic.setObject(dayAttributes, forKey: PYEnumCalendarDictionaryDrawKey.Day.rawValue)
         }
     }
-    public class func getWeekKey(#index:Int)->NSString{
+    class func getWeekKey(#index:Int)->NSString{
         return NSString(format: "day%d", index);
     }
 }

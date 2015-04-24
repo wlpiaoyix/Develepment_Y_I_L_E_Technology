@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 let PYLetCalenderWeekDays:Array<String> = ["Sun","Mon","Tue","Wed","Thur","Fir","Sat"]
-
+typealias PYCaldrawOpteHandler = (CGContextRef?,PYCalssCalenderStruct,UnsafeMutablePointer<NSMutableAttributedString?>,UnsafeMutablePointer<CGPoint?>,AnyObject?)->Void
 class PYCalssCalenderStruct{
     var point:CGPoint
     var style:NSDictionary
@@ -54,7 +54,8 @@ func PYCalSetStructs(#index:Int, type:Int, font:UIFont, color:UIColor, itemSize:
     var structs = PYCalssCalenderStruct(point: point, style: style, size: itemSize, index: index, type:type)
     pointerStruct.memory = structs
 }
-func PYCalCreateStructs(structs:PYCalssCalenderStruct, value:String, pointerAttribute:UnsafeMutablePointer<NSMutableAttributedString?>, pointerOrigin:UnsafeMutablePointer<CGPoint?>){
+
+func PYCalCreateAttribute(structs:PYCalssCalenderStruct, value:String, pointerAttribute:UnsafeMutablePointer<NSMutableAttributedString?>, pointerOrigin:UnsafeMutablePointer<CGPoint?>){
     
     var font = structs.style.objectForKey(PYEnumCalendarDictionaryDrawKey.StyleValueFont.rawValue) as? UIFont
     var color = structs.style.objectForKey(PYEnumCalendarDictionaryDrawKey.StyleValueColor.rawValue) as? UIColor
@@ -62,7 +63,6 @@ func PYCalCreateStructs(structs:PYCalssCalenderStruct, value:String, pointerAttr
     var itemSize = structs.size
     var attribute:NSMutableAttributedString = NSMutableAttributedString(string:value)
     var range = NSMakeRange(0, attribute.length);
-    
     attribute.addAttribute(kCTForegroundColorAttributeName as String, value: color!, range: range)
     attribute.addAttribute(kCTFontAttributeName as String, value: font!, range: range)
     
