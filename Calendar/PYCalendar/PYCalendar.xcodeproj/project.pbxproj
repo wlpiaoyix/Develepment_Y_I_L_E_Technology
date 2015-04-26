@@ -24,6 +24,7 @@
 		1553141F1AECD36600038A85 /* PYCalDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553141E1AECD36600038A85 /* PYCalDic.swift */; };
 		155314211AECE05300038A85 /* PYCalendarBaseDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155314201AECE05300038A85 /* PYCalendarBaseDraw.swift */; };
 		155314231AECE1FE00038A85 /* PYCalendarBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155314221AECE1FE00038A85 /* PYCalendarBaseView.swift */; };
+		155314251AECEDCD00038A85 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 155314241AECEDCD00038A85 /* 1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		1553141E1AECD36600038A85 /* PYCalDic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PYCalDic.swift; sourceTree = "<group>"; };
 		155314201AECE05300038A85 /* PYCalendarBaseDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PYCalendarBaseDraw.swift; sourceTree = "<group>"; };
 		155314221AECE1FE00038A85 /* PYCalendarBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PYCalendarBaseView.swift; sourceTree = "<group>"; };
+		155314241AECEDCD00038A85 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		155313E21AECD2BD00038A85 /* PYCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				155314241AECEDCD00038A85 /* 1.jpg */,
 				1553141D1AECD36600038A85 /* Dic */,
 				155314081AECD33E00038A85 /* Draw */,
 				1553140B1AECD33E00038A85 /* Expend */,
@@ -275,6 +278,7 @@
 			files = (
 				155313EE1AECD2BD00038A85 /* Main.storyboard in Resources */,
 				155313F31AECD2BD00038A85 /* LaunchScreen.xib in Resources */,
+				155314251AECEDCD00038A85 /* 1.jpg in Resources */,
 				155313F01AECD2BD00038A85 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

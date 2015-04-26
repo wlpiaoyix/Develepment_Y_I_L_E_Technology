@@ -11,19 +11,23 @@ import UIKit
 class PYCalenderDayDraw: NSObject {
     var drawOpteHandler:PYCaldrawOpteHandler?
     var userInfo:AnyObject?
+    
     var dayWorkFont = UIFont.systemFontOfSize(18)
     var dayWorkColor = UIColor.blackColor()
+    var dayWorkFontDis = UIFont.systemFontOfSize(18)
+    var dayWorkColorDis = UIColor.grayColor()
     var dayendFont = UIFont.systemFontOfSize(18)
     var dayendColor = UIColor.redColor()
     var currentDate:NSDate?
     
-    func draw(#context:CGContextRef?, values:NSArray, structDic:NSDictionary, boundSize:CGSize){
+    func startDraw(#context:CGContextRef?,structDic:NSDictionary, boundSize:CGSize){
         var index:Int = 1;
-        for value in values {
-            var structs = structDic.valueForKey(self.classForCoder.getWeekKey(index: index) as String) as! PYCalssCalenderStruct
+        var structsArray = structDic.objectForKey(PYEnumCalendarDictionaryDrawKey.Day.rawValue) as! NSArray
+        for _struct_ in structsArray {
+            var structs = _struct_ as! PYCalssCalenderStruct
             var attribute:NSMutableAttributedString?
             if(drawOpteHandler != nil){
-                drawOpteHandler!(structs, self.userInfo)
+                drawOpteHandler!(context, structs, self.userInfo)
             }
             var rect = CGRectMake(structs.valuebounds.origin.x, structs.valuebounds.origin.y, boundSize.width, boundSize.height)
             PYCalCreateAttribute(structs,  &attribute)
@@ -31,17 +35,19 @@ class PYCalenderDayDraw: NSObject {
             index++
         }
     }
-    func setDraw(#drawDic:NSMutableDictionary, structDic:NSDictionary, itemSize:CGSize, offH:CGFloat, poinerHieght:UnsafeMutablePointer<CGFloat?>?){
+    func setDraw(#structDic:NSMutableDictionary, itemSize:CGSize, offH:CGFloat, poinerHieght:UnsafeMutablePointer<CGFloat?>?){
         if(self.currentDate == nil){
             return
         }
-        var index = self.currentDate!.firstWeekDayInMonth()
+        var firstDay = self.currentDate!.firstWeekDayInMonth()
         var numDay = self.currentDate!.numDaysInMounth()
+        var index = firstDay
         var point = CGPointMake(0, offH)
         
         var day = 1;
         let count:Int = PYLetCalenderWeekDays.count;
-        var dayAttributes = NSMutableArray();
+        var structArray = NSMutableArray()
+        var boolIfStart = false;
         for var i = 0; i < 31 / count + 2; i++ {
             var flagBreak = false
             for var j = index; j < count; j++ {
@@ -60,17 +66,13 @@ class PYCalenderDayDraw: NSObject {
                 
                 point.x = CGFloat(j) * itemSize.width
                 
-                var key = self.classForCoder.getWeekKey(index: day) as String
                 var value = NSString(format: "%d", day)
                 var mainbounds = CGRectMake(0, 0, 0, 0)
                 mainbounds.origin = point
                 mainbounds.size = itemSize
                 var structs:PYCalssCalenderStruct?
-                PYCalSetStructs(index: day, 1, font!, color!, mainbounds, value as String, &structs)
-//                PYCalSetStructs(index: day, 1, font!, color!, itemSize, point, &structs)
-                structDic.setValue(structs!, forKey: key);
-                
-                dayAttributes.addObject(value )
+                PYCalSetStructs(index: day + firstDay - 2, 1, font!, color!, mainbounds, value as String, &structs)
+                structArray.addObject(structs!);
                 ++day
                 if(day > numDay){
                     flagBreak = true
@@ -83,9 +85,36 @@ class PYCalenderDayDraw: NSObject {
             }
             index = 0
             point.y += itemSize.height
-            
-            drawDic.setObject(dayAttributes, forKey: PYEnumCalendarDictionaryDrawKey.Day.rawValue)
         }
+        
+        index = count - (numDay + firstDay) % count
+        for var k = index; k > 0; k-- {
+            point.x += itemSize.width
+            var value = NSString(format: "%d", index - k + 1)
+            var mainbounds = CGRectMake(0, 0, 0, 0)
+            mainbounds.origin = point
+            mainbounds.size = itemSize
+            var structs:PYCalssCalenderStruct?
+            PYCalSetStructs(index: numDay + firstDay + index - k - 1 , 1, dayWorkFontDis, dayWorkColorDis, mainbounds, value as String, &structs)
+            structs!.isEnable = false;
+            structArray.addObject(structs!);
+        }
+        
+        index = self.currentDate!.offsetMonth(-1)!.numDaysInMounth() - firstDay
+        point = CGPointMake(0, offH)
+        for var l = 1; l <= firstDay; l++ {
+            var value = NSString(format: "%d", l + index - 1)
+            var mainbounds = CGRectMake(0, 0, 0, 0)
+            mainbounds.origin = point
+            mainbounds.size = itemSize
+            var structs:PYCalssCalenderStruct?
+            PYCalSetStructs(index: l, 1, dayWorkFontDis, dayWorkColorDis, mainbounds, value as String, &structs)
+            structs!.isEnable = false;
+            structArray.addObject(structs!);
+            point.x += itemSize.width
+        }
+        
+        structDic.setObject(structArray, forKey: PYEnumCalendarDictionaryDrawKey.Day.rawValue)
     }
     class func getWeekKey(#index:Int)->NSString{
         return NSString(format: "day%d", index);

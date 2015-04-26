@@ -21,8 +21,6 @@ class ViewController: UIViewController {
         self.dateView.setDate(date: NSDate())
         self.buttonPre.addTarget(self, action: "onclickPre", forControlEvents: UIControlEvents.TouchUpInside)
         self.buttonNext.addTarget(self, action: "onclickNext", forControlEvents: UIControlEvents.TouchUpInside)
-        self.dateView.layer.borderColor = UIColor.grayColor().CGColor
-        self.dateView.layer.borderWidth = 1
         // Do any additional setup after loading the view, typically from a nib.
     }
     

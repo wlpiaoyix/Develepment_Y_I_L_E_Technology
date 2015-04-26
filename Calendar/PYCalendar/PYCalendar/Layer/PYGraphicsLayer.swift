@@ -41,6 +41,7 @@ public class PYGraphicsThumb{
     public class func newInstance(#view:UIView, callback:(CGContextRef,AnyObject?)->Void)->PYGraphicsThumb{
         var instance = PYGraphicsThumb()
         instance.callback = callback
+        instance.graphicsLayer = PYGraphicsLayer()
         instance.view = view
         return instance
     }
@@ -49,19 +50,16 @@ public class PYGraphicsThumb{
         self.view!.setNeedsDisplay();
         if(self.graphicsLayer != nil){
             self.graphicsLayer!.removeFromSuperlayer()
-        }else{
-            self.graphicsLayer = PYGraphicsLayer()
-            self.graphicsLayer?.setCallBackGraphicsLayerDraw(self.callback)
+            self.graphicsLayer!.setCallBackGraphicsLayerDraw(self.callback)
+            self.graphicsLayer!.userInfo = userInfo
+            self.graphicsLayer!.contentsScale = UIScreen.mainScreen().scale
+            self.graphicsLayer!.frame = view!.bounds
+            self.graphicsLayer!.masksToBounds = false
+            self.graphicsLayer!.backgroundColor = UIColor.clearColor().CGColor
+            self.view!.layer.addSublayer(self.graphicsLayer)
+            self.graphicsLayer!.displayIfNeeded()
+            self.graphicsLayer!.setNeedsDisplay()
         }
-        var frame = view!.bounds
-        self.graphicsLayer!.userInfo = userInfo
-        self.graphicsLayer!.contentsScale = UIScreen.mainScreen().scale
-        self.graphicsLayer!.frame = frame
-        self.graphicsLayer!.masksToBounds = false
-        self.graphicsLayer!.backgroundColor = UIColor.clearColor().CGColor
-        self.view!.layer.addSublayer(self.graphicsLayer)
-        self.graphicsLayer!.displayIfNeeded()
-        self.graphicsLayer!.setNeedsDisplay()
     }
     
     

@@ -62,7 +62,15 @@ class PYCalendarBaseView: UIView,PYCalendarBaseDrawDelegate {
         self.drawView.removeFromSuperview()
         self.addSubview(drawView)
         self.drawView.delegateDraw = self
-//        self.drawView.drawOpteHandler = PYCaldrawOpteHandlerImpl
+        self.drawView.drawOpteHandler2 = PYCaldrawOpteHandlerImpl
     }
+}
+func PYCaldrawOpteHandlerImpl(context:CGContextRef?, structs:PYCalssCalenderStruct, userInfo:AnyObject?)->Void{
+    var p = structs.mainbounds.origin;
+    p.x += 1
+    p.y += structs.mainbounds.size.height - 1
+    var p2 = p
+    p2.x += structs.mainbounds.size.width - 2
+    PYCalGraphicsDraw.drawLine(context: context, startPoint: p, endPoint: p2, strokeColor: UIColor.yellowColor().CGColor, strokeWidth: 0.5, lengthPointer: nil, count: 0)
 }
 

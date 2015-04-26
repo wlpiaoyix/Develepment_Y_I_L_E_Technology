@@ -16,6 +16,8 @@ class PYCalendarBaseDraw: UIView {
     
     var drawOpteHandler:PYCaldrawOpteHandler?
     var userInfo:AnyObject?
+    var drawOpteHandler2:PYCaldrawOpteHandler?
+    var userInfo2:AnyObject?
     
     var heightHead:CGFloat = 30
     var heightCell:CGFloat = 30
@@ -24,7 +26,6 @@ class PYCalendarBaseDraw: UIView {
     weak var delegateDraw:PYCalendarBaseDrawDelegate?
     
     private var structDic = NSMutableDictionary()
-    private var drawDic = NSMutableDictionary()
     private var currentDate = NSDate();
     
     private var flagTouchMoved = false;
@@ -33,6 +34,7 @@ class PYCalendarBaseDraw: UIView {
     private var dayDraw = PYCalenderDayDraw()
     
     private var thumb:PYGraphicsThumb?
+    private var thumb2:PYGraphicsThumb?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,7 +51,6 @@ class PYCalendarBaseDraw: UIView {
     }
     func setCurrentDate(date:NSDate){
         currentDate = date;
-        drawDic.removeAllObjects()
         structDic.removeAllObjects()
     }
     func displayLayerDate(){
@@ -79,12 +80,12 @@ class PYCalendarBaseDraw: UIView {
         
         var hOff:CGFloat = 0;
         var size = CGSizeMake(self.frame.size.width/CGFloat(PYLetCalenderWeekDays.count), self.heightHead)
-        self.weekDraw.setDraw(drawDic: self.drawDic, structDic: self.structDic, itemSize:size, offH:hOff)
+        self.weekDraw.setDraw(structDic: self.structDic, itemSize:size, offH:hOff)
         hOff += size.height
         size.height = self.heightCell
         
         var height:CGFloat?
-        self.dayDraw.setDraw(drawDic: self.drawDic, structDic: self.structDic, itemSize: size, offH: hOff, poinerHieght: &height)
+        self.dayDraw.setDraw(structDic: self.structDic, itemSize: size, offH: hOff, poinerHieght: &height)
         
         if(self.delegateDraw != nil){
             self.delegateDraw!.drawBefore(boundsHeight: height!)
@@ -94,10 +95,8 @@ class PYCalendarBaseDraw: UIView {
         self.dayDraw.drawOpteHandler = self.drawOpteHandler
         self.weekDraw.drawOpteHandler = self.drawOpteHandler
         
-        var values = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue) as! NSArray
-        self.weekDraw.draw(context: context, values:values, structDic: self.structDic, boundSize: self.bounds.size)
-        values = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.Day.rawValue) as! NSArray
-        self.dayDraw.draw(context: context, values:values, structDic: self.structDic, boundSize: self.bounds.size)
+        self.weekDraw.startDraw(context: context,structDic: self.structDic, boundSize: self.bounds.size)
+        self.dayDraw.startDraw(context: context, structDic: self.structDic, boundSize: self.bounds.size)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -134,13 +133,34 @@ class PYCalendarBaseDraw: UIView {
         self.thumb = PYGraphicsThumb.newInstance(view: self, callback: { (contextRef, userInfo) -> Void in
             PYCalGraphicsDraw.drawText(context: contextRef, attribute: NSMutableAttributedString(string: ""), rect: self.bounds, y: self.bounds.size.height, scaleFlag: true)
             self.startDraw(context: contextRef)
+            
+            if(self.drawOpteHandler2 != nil){
+                self.thumb2!.executDisplay(nil)
+            }
         })
         
-        self.layer.shadowRadius = 1;
-        self.layer.shadowOpacity = 1;
-        self.layer.shadowPath = nil;
-        self.layer.shadowColor = UIColor.whiteColor().CGColor
-        self.layer.shadowOffset = CGSizeMake(1, 1);
+        self.thumb!.graphicsLayer!.shadowRadius = 1;
+        self.thumb!.graphicsLayer!.shadowOpacity = 1;
+        self.thumb!.graphicsLayer!.shadowPath = nil;
+        self.thumb!.graphicsLayer!.shadowColor = UIColor.whiteColor().CGColor
+        self.thumb!.graphicsLayer!.shadowOffset = CGSizeMake(1, 1);
+        
+        self.thumb2 = PYGraphicsThumb.newInstance(view: self, callback: { (contextRef, userInfo) -> Void in
+            if(self.drawOpteHandler2 != nil){
+                var allKeys = self.structDic.allKeys
+                for key in allKeys{
+                    var strutsArray = self.structDic.objectForKey(key) as! NSArray
+                    for _struts_ in strutsArray {
+                        var target = _struts_ as! PYCalssCalenderStruct
+                        self.drawOpteHandler2!(contextRef,target,self.userInfo)
+                    }
+                }
+            }
+            
+        })
+        
+        
+        
         self.clipsToBounds = false;
     }
     
@@ -151,11 +171,14 @@ class PYCalendarBaseDraw: UIView {
         }
         var allKeys = self.structDic.allKeys
         for key in allKeys{
-            var target = self.structDic.objectForKey(key) as? PYCalssCalenderStruct
-            if(target!.mainbounds.origin.x < point.x && target!.mainbounds.origin.y < point.y && target!.mainbounds.origin.x + target!.mainbounds.size.width > point.x && target!.mainbounds.origin.y + target!.mainbounds.size.height > point.y){
-                pointerStruct.memory = target
-                pointerKey.memory = key as? NSString
-                return
+            var strutsArray = self.structDic.objectForKey(key) as! NSArray
+            for _struts_ in strutsArray {
+                var target = _struts_ as! PYCalssCalenderStruct
+                if(target.mainbounds.origin.x < point.x && target.mainbounds.origin.y < point.y && target.mainbounds.origin.x + target.mainbounds.size.width > point.x && target.mainbounds.origin.y + target.mainbounds.size.height > point.y){
+                    pointerStruct.memory = target
+                    pointerKey.memory = key as? NSString
+                    return
+                }
             }
         }
         return

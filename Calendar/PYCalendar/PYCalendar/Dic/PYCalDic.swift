@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 let PYLetCalenderWeekDays:Array<String> = ["Sun","Mon","Tue","Wed","Thur","Fir","Sat"]
-typealias PYCaldrawOpteHandler = (PYCalssCalenderStruct,AnyObject?)->Void
+typealias PYCaldrawOpteHandler = (CGContextRef?,PYCalssCalenderStruct,AnyObject?)->Void
 
 class PYCalssCalenderStruct{
     var mainbounds:CGRect
@@ -19,6 +19,7 @@ class PYCalssCalenderStruct{
     var value:String
     var index:Int
     var type:Int
+    var isEnable:Bool
     
     init(){
         self.mainbounds = CGRectMake(0, 0, 0, 0)
@@ -27,14 +28,16 @@ class PYCalssCalenderStruct{
         self.style = NSDictionary()
         self.index = 0
         self.type = 0
+        isEnable = true
     }
-    init(mainbounds:CGRect, valuebounds:CGRect, value:String, style:NSDictionary, index:Int, type:Int){
+    init(mainbounds:CGRect, valuebounds:CGRect, value:String, style:NSDictionary, index:Int, type:Int, isEnable:Bool){
         self.mainbounds = mainbounds
         self.valuebounds = valuebounds
         self.value = value
         self.style = style
         self.index = index
         self.type = type
+        self.isEnable = isEnable
     }
 
 }
@@ -59,7 +62,7 @@ func PYCalSetStructs(#index:Int, type:Int, font:UIFont, color:UIColor, mainbound
     valuebounds.size = PYCalUnit.getBoundSize(text: value, font: font, size: valuebounds.size)
     valuebounds.origin.x = (mainbounds.size.width - valuebounds.size.width)/2 + mainbounds.origin.x
     valuebounds.origin.y = (mainbounds.size.height - valuebounds.size.height)/2 + mainbounds.origin.y
-    var structs = PYCalssCalenderStruct(mainbounds: mainbounds, valuebounds: valuebounds, value: value, style: style, index: index, type: type)
+    var structs = PYCalssCalenderStruct(mainbounds: mainbounds, valuebounds: valuebounds, value: value, style: style, index: index, type: type, isEnable:true)
     pointerStruct.memory = structs
 }
 

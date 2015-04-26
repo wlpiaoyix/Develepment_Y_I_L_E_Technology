@@ -17,13 +17,13 @@ class PYCalenderWeekDraw: NSObject {
     var weekendFont = UIFont.systemFontOfSize(12)
     var weekendColor = UIColor.redColor()
     
-    func draw(#context:CGContextRef?, values:NSArray, structDic:NSDictionary, boundSize:CGSize){
+    func startDraw(#context:CGContextRef?, structDic:NSDictionary, boundSize:CGSize){
         var index:Int = 0;
-        for value in values {
-            var structs = structDic.valueForKey(self.classForCoder.getWeekKey(index: index) as String) as! PYCalssCalenderStruct
-            
+        var structsArray = structDic.objectForKey(PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue) as! NSArray
+        for _struct_ in structsArray {
+            var structs = _struct_ as! PYCalssCalenderStruct
             if(drawOpteHandler != nil){
-                drawOpteHandler!(structs, self.userInfo)
+                drawOpteHandler!(context, structs, self.userInfo)
             }
             var attribute:NSMutableAttributedString?
             PYCalCreateAttribute(structs,  &attribute)
@@ -32,10 +32,10 @@ class PYCalenderWeekDraw: NSObject {
             index++
         }
     }
-    func setDraw(#drawDic:NSMutableDictionary, structDic:NSDictionary, itemSize:CGSize, offH:CGFloat){
+    func setDraw(#structDic:NSMutableDictionary, itemSize:CGSize, offH:CGFloat){
         var index:Int = 0
         let endIndex:Int = PYLetCalenderWeekDays.count-1;
-        var weekAttributes = NSMutableArray();
+        var strtucts = NSMutableArray();
         var point = CGPointMake(0, offH);
         for weekDay in PYLetCalenderWeekDays {
             var color:UIColor?
@@ -56,15 +56,12 @@ class PYCalenderWeekDraw: NSObject {
             var structs:PYCalssCalenderStruct?
             var mainbounds = CGRectMake(point.x, point.y, itemSize.width, itemSize.height)
             PYCalSetStructs(index: index, 0, font!, color!, mainbounds, weekDay, &structs)
-            //            PYCalSetStructs(index: index, 0, font!, color!, itemSize, point, &structs)
             
             point.x += structs!.mainbounds.size.width
-            structDic.setValue(structs, forKey: key);
-            
-            weekAttributes.addObject(weekDay)
+            strtucts.addObject(structs!);
             index++
         }
-        drawDic.setObject(weekAttributes, forKey: PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue)
+        structDic.setObject(strtucts, forKey: PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue)
     }
     class func getWeekKey(#index:Int)->NSString{
         return NSString(format: "week%d", index);
