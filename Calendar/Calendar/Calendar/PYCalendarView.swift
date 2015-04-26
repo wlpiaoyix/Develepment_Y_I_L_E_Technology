@@ -65,14 +65,14 @@ class PYCalendarView: UIView,PYCalendarDrawDelegate {
         self.drawView.drawOpteHandler = PYCaldrawOpteHandlerImpl
     }
 }
-func PYCaldrawOpteHandlerImpl(context:CGContextRef?, structs:PYCalssCalenderStruct, pointerAttribute:UnsafeMutablePointer<NSMutableAttributedString?>, pointerOrigin:UnsafeMutablePointer<CGPoint?>, userInfo:AnyObject?){
-    if(structs.type == 0){
-        var startPoint = CGPointMake(structs.point.x+5, structs.point.y + structs.size.height)
-        var endPoint = CGPointMake(structs.point.x-5 + structs.size.width, structs.point.y + structs.size.height)
-        startPoint.y = 600 - startPoint.y
-        endPoint.y = 600 - endPoint.y
-        var lengths = [CGFloat(4),CGFloat(2)]
-        
-        PYCalGraphicsDraw.drawLine(context: context, startPoint: startPoint, endPoint: endPoint, strokeColor: UIColor.grayColor().CGColor, strokeWidth: 0.3, lengthPointer: lengths, count: 2)
-    }
+func PYCaldrawOpteHandlerImpl(structs:PYCalssCalenderStruct, pointerAttribute:UnsafeMutablePointer<NSMutableAttributedString?>, pointerOrigin:UnsafeMutablePointer<CGPoint?>){
+//    if(structs.type == 0){
+//        var startPoint = CGPointMake(structs.point.x+5, structs.point.y + structs.size.height)
+//        var endPoint = CGPointMake(structs.point.x-5 + structs.size.width, structs.point.y + structs.size.height)
+//        startPoint.y = 600 - startPoint.y
+//        endPoint.y = 600 - endPoint.y
+//        var lengths = [CGFloat(4),CGFloat(2)]
+//        
+//        PYCalGraphicsDraw.drawLine(context: context, startPoint: startPoint, endPoint: endPoint, strokeColor: UIColor.grayColor().CGColor, strokeWidth: 0.3, lengthPointer: lengths, count: 2)
+//    }
 }

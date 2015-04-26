@@ -9,13 +9,15 @@
 import UIKit
 
 class PYCalenderWeekDraw: NSObject {
+    var drawOpteHandler:PYCaldrawOpteHandler?
+    var userInfo:AnyObject?
+    
     var weekWorkFont = UIFont.systemFontOfSize(12)
     var weekWorkColor = UIColor.blackColor()
     var weekendFont = UIFont.systemFontOfSize(12)
     var weekendColor = UIColor.redColor()
     
-    func draw(#context:CGContextRef?, drawDic:NSDictionary, structDic:NSDictionary, boundSize:CGSize, drawOpteHandler:PYCaldrawOpteHandler?, userInfo:AnyObject?){
-        var values = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue) as! NSArray;
+    func draw(#context:CGContextRef?, values:NSArray, structDic:NSDictionary, boundSize:CGSize){
         var index:Int = 0;
         for value in values {
             var rect = CGRectMake(0, 0, boundSize.width, boundSize.height)
@@ -24,12 +26,19 @@ class PYCalenderWeekDraw: NSObject {
             var origin:CGPoint?
             PYCalCreateAttribute(structs, value as! String, &attribute, &origin)
             if(drawOpteHandler != nil){
-                drawOpteHandler!(context!,structs,&attribute,&origin,userInfo)
+                drawOpteHandler!(structs,&attribute,&origin)
             }
             rect.origin = origin!
             PYCalGraphicsDraw.drawText(context: context, attribute: attribute, rect: rect, y: boundSize.height, scaleFlag: false);
             index++
         }
+//        if(drawOpteHandler != nil){
+//            index = 0
+//            for value in values{
+//                var structs = structDic.valueForKey(self.classForCoder.getWeekKey(index: index) as String) as! PYCalssCalenderStruct
+//                index++
+//            }
+//        }
     }
     func setDraw(#drawDic:NSMutableDictionary, structDic:NSDictionary, itemSize:CGSize, offH:CGFloat){
         var index:Int = 0

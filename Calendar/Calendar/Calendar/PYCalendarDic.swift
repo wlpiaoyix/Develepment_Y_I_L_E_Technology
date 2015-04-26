@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 let PYLetCalenderWeekDays:Array<String> = ["Sun","Mon","Tue","Wed","Thur","Fir","Sat"]
-typealias PYCaldrawOpteHandler = (CGContextRef?,PYCalssCalenderStruct,UnsafeMutablePointer<NSMutableAttributedString?>,UnsafeMutablePointer<CGPoint?>,AnyObject?)->Void
+typealias PYCaldrawOpteHandler = (PYCalssCalenderStruct,UnsafeMutablePointer<NSMutableAttributedString?>,UnsafeMutablePointer<CGPoint?>)->Void
 class PYCalssCalenderStruct{
     var point:CGPoint
     var style:NSDictionary

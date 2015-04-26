@@ -17,6 +17,7 @@ class PYCalendarDraw: UIView {
     
     var drawOpteHandler:PYCaldrawOpteHandler?
     var userInfo:AnyObject?
+    
     var heightHead:CGFloat = 30
     var heightCell:CGFloat = 30
     var flagAutoHeight = true
@@ -89,9 +90,15 @@ class PYCalendarDraw: UIView {
         if(self.delegateDraw != nil){
             self.delegateDraw!.drawBefore(height: height!)
         }
+        self.dayDraw.userInfo = self.userInfo
+        self.weekDraw.userInfo = self.userInfo
+        self.dayDraw.drawOpteHandler = self.drawOpteHandler
+        self.weekDraw.drawOpteHandler = self.drawOpteHandler
         
-        self.weekDraw.draw(context: context, drawDic: self.drawDic, structDic: self.structDic, boundSize: self.bounds.size, drawOpteHandler:drawOpteHandler, userInfo:userInfo)
-        self.dayDraw.draw(context: context, drawDic: self.drawDic, structDic: self.structDic, boundSize: self.bounds.size ,drawOpteHandler:drawOpteHandler, userInfo:userInfo)
+        var values = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.WeekDay.rawValue) as! NSArray
+        self.weekDraw.draw(context: context, values:values, structDic: self.structDic, boundSize: self.bounds.size)
+        values = drawDic.objectForKey(PYEnumCalendarDictionaryDrawKey.Day.rawValue) as! NSArray
+        self.dayDraw.draw(context: context, values:values, structDic: self.structDic, boundSize: self.bounds.size)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -126,17 +133,15 @@ class PYCalendarDraw: UIView {
     private func initParam(){
         self.setCurrentDate(NSDate());
         self.thumb = PYGraphicsThumb.newInstance(view: self, callback: { (contextRef, userInfo) -> Void in
-            
             PYCalGraphicsDraw.drawText(context: contextRef, attribute: NSMutableAttributedString(string: ""), rect: self.bounds, y: self.bounds.size.height, scaleFlag: true)
             self.startDraw(context: contextRef)
-            
         })
         
         self.layer.shadowRadius = 1;
         self.layer.shadowOpacity = 1;
         self.layer.shadowPath = nil;
         self.layer.shadowColor = UIColor.whiteColor().CGColor
-        self.layer.shadowOffset = CGSizeMake(2, 2);
+        self.layer.shadowOffset = CGSizeMake(1, 1);
         self.clipsToBounds = false;
     }
     
