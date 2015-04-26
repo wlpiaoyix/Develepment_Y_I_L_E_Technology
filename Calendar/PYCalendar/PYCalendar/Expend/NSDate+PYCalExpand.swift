@@ -15,7 +15,7 @@ extension NSDate {
     func day()->Int?{
         var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
         var components = gregorian?.components(NSCalendarUnit.DayCalendarUnit, fromDate: self)
-        return components?.month
+        return components?.day
     }
     func month()->Int?{
         var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
@@ -25,7 +25,7 @@ extension NSDate {
     func Year()->Int?{
         var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
         var components = gregorian?.components(NSCalendarUnit.YearCalendarUnit, fromDate: self)
-        return components?.month
+        return components?.year
     }
     
     func offsetDay(numDays:Int)->NSDate?{

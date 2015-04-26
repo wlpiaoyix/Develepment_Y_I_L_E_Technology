@@ -8,7 +8,7 @@
 
 import UIKit
 protocol PYCalendarBaseDrawDelegate : class {
-    func touchUp(#structs:PYCalssCalenderStruct, touchPoint:CGPoint)
+    func touchUp(#structs:PYCalssCalenderStruct?, touchPoint:CGPoint)
     func drawBefore(#boundsHeight:CGFloat);
 }
 
@@ -60,7 +60,8 @@ class PYCalendarBaseDraw: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.backgroundColor = UIColor.clearColor()
-        
+        self.thumb?.graphicsLayer?.frame = self.bounds
+        self.thumb2?.graphicsLayer?.frame = self.bounds
     }
     
     private func startDraw(#context:CGContextRef?){
@@ -119,7 +120,7 @@ class PYCalendarBaseDraw: UIView {
             var key:NSString?
             self.checkStructDic(point: point, pointerStruct: &structs, pointerKey: &key)
             if(key != nil && self.delegateDraw != nil){
-                self.delegateDraw!.touchUp(structs:structs!, touchPoint: point)
+                self.delegateDraw!.touchUp(structs: structs, touchPoint: point)
             }
         }
     }
@@ -130,6 +131,20 @@ class PYCalendarBaseDraw: UIView {
     
     private func initParam(){
         self.setCurrentDate(NSDate());
+        
+        self.thumb2 = PYGraphicsThumb.newInstance(view: self, callback: { (contextRef, userInfo) -> Void in
+            if(self.drawOpteHandler2 != nil){
+                var allKeys = self.structDic.allKeys
+                for key in allKeys{
+                    var strutsArray = self.structDic.objectForKey(key) as! NSArray
+                    for _struts_ in strutsArray {
+                        var target = _struts_ as! PYCalssCalenderStruct
+                        self.drawOpteHandler2!(contextRef,target,self.userInfo2)
+                    }
+                }
+            }
+            
+        })
         self.thumb = PYGraphicsThumb.newInstance(view: self, callback: { (contextRef, userInfo) -> Void in
             PYCalGraphicsDraw.drawText(context: contextRef, attribute: NSMutableAttributedString(string: ""), rect: self.bounds, y: self.bounds.size.height, scaleFlag: true)
             self.startDraw(context: contextRef)
@@ -144,20 +159,6 @@ class PYCalendarBaseDraw: UIView {
         self.thumb!.graphicsLayer!.shadowPath = nil;
         self.thumb!.graphicsLayer!.shadowColor = UIColor.whiteColor().CGColor
         self.thumb!.graphicsLayer!.shadowOffset = CGSizeMake(1, 1);
-        
-        self.thumb2 = PYGraphicsThumb.newInstance(view: self, callback: { (contextRef, userInfo) -> Void in
-            if(self.drawOpteHandler2 != nil){
-                var allKeys = self.structDic.allKeys
-                for key in allKeys{
-                    var strutsArray = self.structDic.objectForKey(key) as! NSArray
-                    for _struts_ in strutsArray {
-                        var target = _struts_ as! PYCalssCalenderStruct
-                        self.drawOpteHandler2!(contextRef,target,self.userInfo)
-                    }
-                }
-            }
-            
-        })
         
         
         

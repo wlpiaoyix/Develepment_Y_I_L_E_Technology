@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         self.dateView.offsetMonth(1)
         self.dateView.displayDate()
     }
-    override func viewDidLayoutSubviews() {
+    override func viewWillLayoutSubviews() {
         var r = CGRectMake(10, 20, 60, 30)
         self.buttonPre.frame = r
         r.origin.x += r.size.width + 10

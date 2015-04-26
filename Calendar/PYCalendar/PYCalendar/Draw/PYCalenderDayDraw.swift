@@ -71,7 +71,7 @@ class PYCalenderDayDraw: NSObject {
                 mainbounds.origin = point
                 mainbounds.size = itemSize
                 var structs:PYCalssCalenderStruct?
-                PYCalSetStructs(index: day + firstDay - 2, 1, font!, color!, mainbounds, value as String, &structs)
+                PYCalSetStructs(index: day + firstDay, 1, font!, color!, mainbounds, value as String, &structs)
                 structArray.addObject(structs!);
                 ++day
                 if(day > numDay){
@@ -95,7 +95,7 @@ class PYCalenderDayDraw: NSObject {
             mainbounds.origin = point
             mainbounds.size = itemSize
             var structs:PYCalssCalenderStruct?
-            PYCalSetStructs(index: numDay + firstDay + index - k - 1 , 1, dayWorkFontDis, dayWorkColorDis, mainbounds, value as String, &structs)
+            PYCalSetStructs(index: numDay + firstDay + index - k + 1 , 1, dayWorkFontDis, dayWorkColorDis, mainbounds, value as String, &structs)
             structs!.isEnable = false;
             structArray.addObject(structs!);
         }

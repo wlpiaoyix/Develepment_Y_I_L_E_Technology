@@ -17,16 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3WR-u4-2fY">
-                                <rect key="frame" x="0.0" y="-8" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3WR-u4-2fY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3WR-u4-2fY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="KIw-Ii-M7g"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3WR-u4-2fY" secondAttribute="trailing" constant="-16" id="daL-mP-rzQ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3WR-u4-2fY" secondAttribute="bottom" constant="8" id="ocM-ev-8BA"/>
-                            <constraint firstItem="3WR-u4-2fY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-8" id="sOZ-mW-nhn"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3WR-u4-2fY" secondAttribute="bottom" id="ocM-ev-8BA"/>
+                            <constraint firstItem="3WR-u4-2fY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="sOZ-mW-nhn"/>
                         </constraints>
                     </view>
                 </viewController>
